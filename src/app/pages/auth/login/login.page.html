@@ -1,0 +1,70 @@
+<ion-header class="custom-header ion-no-border">
+  <ion-toolbar>
+    <ion-title class="header-title">
+      <img src="assets/logo.png" alt="App Logo" class="logo-img" />
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="auth-content" fullscreen>
+  <div class="auth-container main-container">
+
+    <div class="welcome-text">
+      <h2>Welcome to D List -</h2>
+      <h2 class="app-title">Social Credit Rating App</h2>
+      <p class="subtitle">Find out who is D Listed</p>
+    </div>
+
+    <form (ngSubmit)="login()" class="login-form">
+
+      <ion-item class="input-item" lines="none">
+        <ion-icon name="mail-outline" slot="start"></ion-icon>
+        <ion-input
+          type="email"
+          [(ngModel)]="email"
+          name="email"
+          placeholder="Email"
+          required>
+        </ion-input>
+      </ion-item>
+
+      <ion-item class="input-item" lines="none">
+        <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+        <ion-input
+          [type]="showPassword ? 'text' : 'password'"
+          [(ngModel)]="password"
+          name="password"
+          placeholder="Password"
+          required>
+        </ion-input>
+        <ion-icon
+          [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"
+          slot="end"
+          (click)="togglePasswordVisibility()">
+        </ion-icon>
+      </ion-item>
+
+      <ion-button expand="block" type="submit" [disabled]="loading" class="login-btn">
+        <ion-spinner *ngIf="loading" slot="start"></ion-spinner>
+        Login
+      </ion-button>
+
+      <ion-text color="danger" *ngIf="error" class="error-text">
+        {{ error }}
+      </ion-text>
+
+      <p class="switch-text">
+        Don’t have an account? <a (click)="gotoRegister()">Register</a>
+      </p>
+      <p class="forgot-text">
+        <a (click)="forgotPassword()">Forgot Password?</a>
+      </p>
+    </form>
+
+    <p class="privacy-text">
+      <a href="https://dlistapp.net/privacy-policy.html" target="_blank">Privacy Policy</a> |
+      <a (click)="gotohelp()">Help</a>
+    </p>
+
+  </div>
+</ion-content>
